@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your SkillSwap Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container dashboard">
+        <header class="dashboard-header">
+            <div class="header-top">
+                <div>
+                    <h1 id="greeting">👋 Welcome!</h1>
+                    <p>Your main category is <strong id="category-display"></strong></p>
+                </div>
+                <div class="wallet">
+                    <p>SkillMoney Balance</p>
+                    <strong id="wallet-balance">💰 0</strong>
+                </div>
+            </div>
+            <nav class="dashboard-nav">
+                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="#" class="nav-item">Explore Tutors</a>
+                <a href="#" class="nav-item">My Connections</a>
+                <a href="#" class="nav-item">Profile</a>
+            </nav>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="main-content">
+                <section class="learn-section card">
+                    <h2>🎯 Skills You Want to Learn</h2>
+                    <p>Add skills to get matched with experts. We'll always suggest great tutors for you.</p>
+                    <div id="learn-skills-list" class="skills-tag-list"></div>
+                    <div class="add-skill">
+                        <input type="text" id="new-skill-input" placeholder="e.g., 'React Native' or 'Public Speaking'" />
+                        <button onclick="addLearnSkill()" class="button-primary">Add Skill</button>
+                    </div>
+                </section>
+
+                <section id="matched-users-section" class="card">
+                    <h2>✨ Recommended Tutors For You</h2>
+                    <div id="matched-users-list" class="user-card-container">
+                        </div>
+                </section>
+            </div>
+
+            <div class="sidebar">
+                <section id="requests-section" class="card">
+                    <h2>📥 Inbox: Your Requests</h2>
+                    <div id="requested-users-list" class="user-card-container">
+                        </div>
+                </section>
+
+                <section class="analytics-section card">
+                    <h2>📊 Your Analytics</h2>
+                    <ul>
+                        <li><span>SkillMoney Earned:</span> <strong id="analytics-earned">0</strong></li>
+                        <li><span>SkillMoney Spent:</span> <strong id="analytics-spent">0</strong></li>
+                        <li><span>People You've Taught:</span> <strong id="analytics-taught">0</strong></li>
+                        <li><span>People You've Learned From:</span> <strong id="analytics-learned">0</strong></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

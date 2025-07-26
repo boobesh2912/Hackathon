@@ -1,0 +1,57 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to SkillSwap</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container login-container">
+    <h1>👋 Welcome to SkillSwap</h1>
+    <p>Swap your skills. Earn SkillMoney. Learn anything.</p>
+
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="e.g. Boobesh AG" />
+
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" placeholder="e.g. boobesh@example.com" />
+
+    <label for="category">Main Skill Category:</label>
+    <select id="category">
+      <option disabled selected>Select a category</option>
+      <option value="tech">Tech</option>
+      <option value="creative">Creative</option>
+      <option value="marketing">Marketing</option>
+      <option value="communication">Communication</option>
+    </select>
+
+    <label for="coins">Initial SkillMoney:</label>
+    <input type="number" id="coins" value="100" disabled />
+
+    <button onclick="startSkillSwap()">Start Swapping ➡️</button>
+  </div>
+
+  <script>
+    function startSkillSwap() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const category = document.getElementById("category").value;
+
+      if (!name || !email || !category) {
+        alert("Please fill in all details!");
+        return;
+      }
+
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userCategory", category);
+      localStorage.setItem("skillMoney", 100);
+      localStorage.setItem("requestedToYou", JSON.stringify([]));
+
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

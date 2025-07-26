@@ -1,0 +1,137 @@
+/* style.css (Revision 3) */
+:root {
+    --primary-hue: 210;
+    --secondary-hue: 145;
+    --primary-color: hsl(var(--primary-hue), 85%, 50%);
+    --primary-hover: hsl(var(--primary-hue), 85%, 45%);
+    --primary-light: hsl(var(--primary-hue), 90%, 95%);
+    --secondary-color: hsl(var(--secondary-hue), 60%, 45%);
+    --secondary-hover: hsl(var(--secondary-hue), 60%, 40%);
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --text-color: #212529;
+    --subtle-text: #6c757d;
+    --border-color: #dee2e6;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --font-family: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* --- Buttons & Inputs --- */
+button {
+    font-family: var(--font-family);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+.button-primary { background-color: var(--primary-color); color: white; }
+.button-primary:hover { background-color: var(--primary-hover); }
+.button-secondary { background-color: var(--secondary-color); color: white; }
+.button-secondary:hover { background-color: var(--secondary-hover); }
+
+/* --- Dashboard Specific --- */
+.card {
+    background: var(--card-background);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+    background: var(--card-background);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow);
+}
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboard-header h1 { margin: 0; font-size: 1.5rem; }
+.wallet { text-align: right; }
+.wallet p { margin: 0; font-size: 0.9rem; color: var(--subtle-text); }
+.wallet strong { font-size: 1.75rem; color: var(--secondary-color); font-weight: 700; }
+
+/* --- NEW NAVIGATION BAR --- */
+.dashboard-nav {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    display: flex;
+    gap: 1.5rem;
+}
+.nav-item {
+    text-decoration: none;
+    color: var(--subtle-text);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+.nav-item:hover {
+    color: var(--primary-color);
+}
+.nav-item.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+.main-content, .sidebar { display: flex; flex-direction: column; gap: 2rem; }
+
+.card h2 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.skills-tag-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+.skill-tag {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.user-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: box-shadow 0.2s ease;
+}
+.user-card h4 { margin: 0 0 0.25rem; color: var(--text-color); }
+.user-card .details { font-size: 0.85rem; color: var(--subtle-text); margin-bottom: 1rem; }
+.user-card .skills-label { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.user-card .skill-tag { background: #e9ecef; color: #495057; }
+.user-card button { width: 100%; margin-top: 1rem; }

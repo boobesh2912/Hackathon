@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join SkillSwap</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container login-container">
+        <div id="step1">
+            <h1>🚀 Let's Get You Started</h1>
+            <p>First, tell us a bit about yourself.</p>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" placeholder="e.g., Boobesh AG" />
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" placeholder="e.g., boobesh@example.com" />
+            <button onclick="nextStep(2)">Next</button>
+        </div>
+
+        <div id="step2" style="display: none;">
+            <h1>🧠 What's Your Main Skill Area?</h1>
+            <p>This helps us find the right community for you.</p>
+            <div class="category-selection">
+                <div class="category-card" onclick="selectCategory('tech')">Tech</div>
+                <div class="category-card" onclick="selectCategory('creative')">Creative</div>
+                <div class="category-card" onclick="selectCategory('marketing')">Marketing</div>
+                <div class="category-card" onclick="selectCategory('communication')">Communication</div>
+            </div>
+        </div>
+
+        <div id="step3" style="display: none;">
+            <h1>🛠️ Which Skills Can You Teach?</h1>
+            <p>Select all that apply. You'll earn <strong>100 SkillMoney</strong> for signing up!</p>
+            <div class="checkbox-group" id="teach-skills-selection">
+                </div>
+            <button onclick="finishOnboarding()">Complete Profile & Claim Reward</button>
+        </div>
+    </div>
+
+    <script>
+        const skillsByCategory = {
+            tech: ["Python", "JavaScript", "React", "Node.js", "AI/ML", "Cloud (AWS/GCP)"],
+            creative: ["Figma", "Canva", "UI/UX Design", "Video Editing", "Illustration"],
+            marketing: ["SEO", "Content Marketing", "Social Media Ads", "Google Analytics"],
+            communication: ["Public Speaking", "Negotiation", "Storytelling", "Sales Pitch"]
+        };
+
+        let userCategory = '';
+
+        function nextStep(step) {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+
+            if (step === 2 && (!name || !email)) {
+                alert("Please fill in your name and email.");
+                return;
+            }
+
+            document.getElementById(`step${step - 1}`).style.display = 'none';
+            document.getElementById(`step${step}`).style.display = 'block';
+        }
+
+        function selectCategory(category) {
+            userCategory = category;
+            const teachSkillsContainer = document.getElementById('teach-skills-selection');
+            teachSkillsContainer.innerHTML = ''; // Clear previous skills
+
+            skillsByCategory[category].forEach(skill => {
+                const label = document.createElement('label');
+                label.innerHTML = `<input type='checkbox' value='${skill}' name='teach-skill' /> ${skill}`;
+                teachSkillsContainer.appendChild(label);
+            });
+
+            nextStep(3);
+        }
+
+        function finishOnboarding() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const selectedSkills = document.querySelectorAll("input[name='teach-skill']:checked");
+
+            if (selectedSkills.length === 0) {
+                alert("Please select at least one skill you can teach.");
+                return;
+            }
+
+            const teachSkills = Array.from(selectedSkills).map(cb => cb.value);
+
+            // Store info in localStorage to be used by the dashboard
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userCategory", userCategory);
+            localStorage.setItem("userTeachSkills", JSON.stringify(teachSkills));
+            localStorage.setItem("skillMoney", 100); // Initial reward
+
+            // Redirect to the dashboard
+            window.location.href = "dashboard.html";
+        }
+    </script>
+</body>
+</html>
